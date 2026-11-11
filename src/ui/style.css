@@ -1,0 +1,91 @@
+:root {
+  --hintergrund: #f4f1e8;
+  --text: #1f2a22;
+  --akzent: #2f5d3a;
+  --akzent-gedrueckt: #244a2d;
+  color-scheme: light dark;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --hintergrund: #18201a;
+    --text: #eef2ec;
+    --akzent: #4f8f5f;
+    --akzent-gedrueckt: #3f7a4f;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--hintergrund);
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
+}
+
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  /* Abstand zu Notch und Home-Leiste am iPhone */
+  padding: max(1.5rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right))
+    max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 9vw, 3.5rem);
+}
+
+.ergebnis {
+  font-size: clamp(5rem, 35vw, 10rem);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.ergebnis.neu {
+  animation: auftauchen 0.25s ease-out;
+}
+
+@keyframes auftauchen {
+  from {
+    transform: scale(0.7);
+    opacity: 0.3;
+  }
+}
+
+.wuerfel-button {
+  width: min(100%, 20rem);
+  min-height: 4rem; /* deutlich über Apples Mindestgröße von 44 pt */
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--akzent);
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  touch-action: manipulation; /* kein Doppeltipp-Zoom in Safari */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wuerfel-button:active {
+  background: var(--akzent-gedrueckt);
+  transform: scale(0.98);
+}
+
+.wuerfel-button:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 3px;
+}
